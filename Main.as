@@ -27,6 +27,7 @@
 		}
 		
 		private function onEnterFrame(e:Event):void {
+			// bird movement
 			the_bird.y_speed += the_bird.gravity;
 			the_bird.y += the_bird.y_speed;
 			
@@ -34,6 +35,10 @@
 				the_bird.y = -50;
 				the_bird.y_speed = 0;
 			}
+			
+			// pipe movement
+			//the_pipe.x_speed = -2;
+			the_pipe.x += the_pipe.x_speed;
 		}
 	}
 	
