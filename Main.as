@@ -12,17 +12,29 @@
 		public function Main() {
 			// constructor code
 			addEventListener(Event.ENTER_FRAME, onEnterFrame);
-			
+
+			// bird initial movement
 			the_bird.gravity = 0;
 			the_bird.y_speed = 0;
+			
+			// pipe initial movement
+			pipe1.x_speed = 0;
+			pipe2.x_speed = 0;
+			pipe3.x_speed = 0;
 			
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeySpaceDown);
 		}
 		
 		private function onKeySpaceDown(e:KeyboardEvent):void {	
 			if( e.keyCode == Keyboard.SPACE){
+				// bird movement
 				the_bird.gravity = 2;			
 				the_bird.y_speed = -20;
+				
+				// pipe movement
+				pipe1.x_speed = -5;
+				pipe2.x_speed = -5;
+				pipe3.x_speed = -5;
 			}
 		}
 		
@@ -37,8 +49,10 @@
 			}
 			
 			// pipe movement
-			//the_pipe.x_speed = -2;
-			the_pipe.x += the_pipe.x_speed;
+			//the_pipe.x_speed = -5;
+			pipe1.x += pipe1.x_speed;
+			pipe2.x += pipe1.x_speed;
+			pipe3.x += pipe1.x_speed;
 		}
 	}
 	
