@@ -49,10 +49,21 @@
 			}
 			
 			// pipe movement
-			//the_pipe.x_speed = -5;
 			pipe1.x += pipe1.x_speed;
 			pipe2.x += pipe1.x_speed;
 			pipe3.x += pipe1.x_speed;
+			
+			// pipe cycle
+			var pipe_distance:int = 200;
+			if( pipe1.x + pipe1.width < 0 ){
+				pipe1.x = pipe3.x + pipe_distance;
+			}
+			if( pipe2.x + pipe2.width < 0 ){
+				pipe2.x = pipe1.x + pipe_distance;
+			}
+			if( pipe3.x + pipe3.width < 0 ){
+				pipe3.x = pipe2.x + pipe_distance;
+			}
 		}
 	}
 	
