@@ -15,6 +15,12 @@
 			the_bird.addEventListener(Event.ENTER_FRAME, function(e:Event):void {
 				the_bird.y_speed += the_bird.gravity;
 				the_bird.y += the_bird.y_speed;
+
+				var y_min_pos = -35;
+				if( the_bird.y < y_min_pos ){
+					the_bird.y = y_min_pos;
+					the_bird.y_speed = 0;
+				}
 			});
 			
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, function(e:KeyboardEvent):void {
