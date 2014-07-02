@@ -64,6 +64,12 @@
 			if( pipe3.x + pipe3.width < 0 ){
 				pipe3.x = pipe2.x + pipe_distance;
 			}
+			
+			// check collision
+			if( the_bird.hitTestObject(pipe1) ){
+				stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeySpaceDown);
+				pipe1.x_speed = pipe2.x_speed = pipe3.x_speed = 0;
+			}
 		}
 	}
 	
