@@ -7,7 +7,7 @@
 	
 	
 	public class Main extends MovieClip {
-		
+		private var game_over:Boolean;
 		
 		public function Main() {
 			// constructor code
@@ -18,9 +18,12 @@
 			the_bird.y_speed = 0;
 			
 			// pipe initial movement
-			pipe1.x_speed = 0;
+			topPipe1.x_speed = 0;
+			bottomPipe1.x_speed = 0;
 			pipe2.x_speed = 0;
 			pipe3.x_speed = 0;
+		
+			game_over = false;
 			
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeySpaceDown);
 		}
@@ -32,7 +35,8 @@
 				the_bird.y_speed = -20;
 				
 				// pipe movement
-				pipe1.x_speed = -5;
+				topPipe1.x_speed = -5;
+				bottomPipe1.x_speed = -5;
 				pipe2.x_speed = -5;
 				pipe3.x_speed = -5;
 			}
@@ -49,26 +53,31 @@
 			}
 			
 			// pipe movement
-			pipe1.x += pipe1.x_speed;
-			pipe2.x += pipe1.x_speed;
-			pipe3.x += pipe1.x_speed;
+			topPipe1.x += topPipe1.x_speed;
+			bottomPipe1.x += bottomPipe1.x_speed;
+			pipe2.x += pipe2.x_speed;
+			pipe3.x += pipe3.x_speed;
 			
 			// pipe cycle
 			var pipe_distance:int = 200;
-			if( pipe1.x + pipe1.width < 0 ){
-				pipe1.x = pipe3.x + pipe_distance;
+			if( topPipe1.x + topPipe1.width < 0 ){
+				topPipe1.x = pipe3.x + pipe_distance;
 			}
 			if( pipe2.x + pipe2.width < 0 ){
-				pipe2.x = pipe1.x + pipe_distance;
+				pipe2.x = topPipe1.x + pipe_distance;
 			}
 			if( pipe3.x + pipe3.width < 0 ){
 				pipe3.x = pipe2.x + pipe_distance;
 			}
 			
 			// check collision
-			if( the_bird.hitTestObject(pipe1) ){
+			if( !game_over && the_bird.hitTestObject(topPipe1) ){
+				the_bird.y_speed = 0;
+				
 				stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeySpaceDown);
-				pipe1.x_speed = pipe2.x_speed = pipe3.x_speed = 0;
+				topPipe1.x_speed = pipe2.x_speed = pipe3.x_speed = 0;
+			
+				game_over = true;
 			}
 		}
 	}
