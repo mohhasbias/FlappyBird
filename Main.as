@@ -20,6 +20,7 @@
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, function(e:KeyboardEvent):void {
 				if( e.keyCode == Keyboard.SPACE ){
 					the_bird.gravity = 2;
+					the_bird.y_speed = -20;
 				}
 			});
 		}
