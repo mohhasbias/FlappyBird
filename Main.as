@@ -27,35 +27,44 @@
 				if( e.keyCode == Keyboard.SPACE ){
 					the_bird.gravity = 2;
 					the_bird.y_speed = -20;
+					
+					topPipe1.x_speed = -5;
+					bottomPipe1.x_speed = -5;
+					
+					topPipe2.x_speed = -5;
+					bottomPipe2.x_speed = -5;
+					
+					topPipe3.x_speed = -5;
+					bottomPipe3.x_speed = -5;
 				}
 			});
 			
-			topPipe1.x_speed = -5;
+			topPipe1.x_speed = 0;
 			topPipe1.addEventListener(Event.ENTER_FRAME, function(e:Event):void {
 				moveThePipe(e.currentTarget);
 			});
 			
-			bottomPipe1.x_speed = -5;
+			bottomPipe1.x_speed = 0;
 			bottomPipe1.addEventListener(Event.ENTER_FRAME, function(e:Event):void {
 				moveThePipe(e.currentTarget);
 			});
 			
-			topPipe2.x_speed = -5;
+			topPipe2.x_speed = 0;
 			topPipe2.addEventListener(Event.ENTER_FRAME, function(e:Event):void {
 				moveThePipe(e.currentTarget);
 			});
 			
-			bottomPipe2.x_speed = -5;
+			bottomPipe2.x_speed = 0;
 			bottomPipe2.addEventListener(Event.ENTER_FRAME, function(e:Event):void {
 				moveThePipe(e.currentTarget);
 			});
 			
-			topPipe3.x_speed = -5;
+			topPipe3.x_speed = 0;
 			topPipe3.addEventListener(Event.ENTER_FRAME, function(e:Event):void {
 				moveThePipe(e.currentTarget);
 			});
 			
-			bottomPipe3.x_speed = -5;
+			bottomPipe3.x_speed = 0;
 			bottomPipe3.addEventListener(Event.ENTER_FRAME, function(e:Event):void {
 				moveThePipe(e.currentTarget);
 			});
