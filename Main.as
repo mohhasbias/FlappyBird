@@ -63,6 +63,11 @@
 		
 		private function moveThePipe(the_pipe):void {
 			the_pipe.x += the_pipe.x_speed;
+			
+			var pipe_distance:int = 200;
+			if( the_pipe.x + the_pipe.width < 0 ){
+				the_pipe.x = the_pipe.x + 3*pipe_distance;
+			}
 		}
 	}
 	
