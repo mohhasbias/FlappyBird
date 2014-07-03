@@ -9,6 +9,8 @@
 	public class Main extends MovieClip {
 		
 		public function Main() {
+			var game_over:Boolean = false;
+			
 			the_bird.gravity = 0;
 			the_bird.y_speed = 0;
 			
@@ -21,10 +23,27 @@
 					the_bird.y = y_min_pos;
 					the_bird.y_speed = 0;
 				}
+				
+				if( !game_over ){
+					if( the_bird.hitTestObject(topPipe1) || the_bird.hitTestObject(bottomPipe1) ||
+						the_bird.hitTestObject(topPipe2) || the_bird.hitTestObject(bottomPipe2) ||
+						the_bird.hitTestObject(topPipe3) || the_bird.hitTestObject(bottomPipe3) ){
+							game_over = true;
+							
+							the_bird.y_speed = 0;
+							
+							topPipe1.x_speed = 0;
+							bottomPipe1.x_speed = 0;
+							topPipe2.x_speed = 0;
+							bottomPipe2.x_speed = 0;
+							topPipe3.x_speed = 0;
+							bottomPipe3.x_speed = 0;
+						}
+				}
 			});
 			
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, function(e:KeyboardEvent):void {
-				if( e.keyCode == Keyboard.SPACE ){
+				if( !game_over && e.keyCode == Keyboard.SPACE ){
 					the_bird.gravity = 2;
 					the_bird.y_speed = -20;
 					
