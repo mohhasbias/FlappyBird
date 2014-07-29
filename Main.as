@@ -10,6 +10,7 @@
 
 		public function Main() {
 			var game_over:Boolean = false;
+      var score:int = 0;
 
 			the_bird.gravity = 0;
 			the_bird.y_speed = 0;
@@ -24,7 +25,7 @@
 					the_bird.y_speed = 0;
 				}
 
-				if( !game_over ){
+				if(!game_over ){
 					if( the_bird.hitTestObject(topPipe1) || the_bird.hitTestObject(bottomPipe1) ||
 						the_bird.hitTestObject(topPipe2) || the_bird.hitTestObject(bottomPipe2) ||
 						the_bird.hitTestObject(topPipe3) || the_bird.hitTestObject(bottomPipe3) ){
@@ -38,7 +39,16 @@
 							bottomPipe2.x_speed = 0;
 							topPipe3.x_speed = 0;
 							bottomPipe3.x_speed = 0;
-						}
+
+              score_trigger.x_speed = 0;
+					}
+
+          if( the_bird.hitTestObject(score_trigger)){
+            trace("ouch");
+            score++;
+            trace(score);
+            score_trigger.y = bottomPipe1.y;
+          }
 				}
 			});
 
@@ -55,6 +65,8 @@
 
 					topPipe3.x_speed = -5;
 					bottomPipe3.x_speed = -5;
+
+          score_trigger.x_speed = -5;
 				}
 			});
 
@@ -87,15 +99,25 @@
 			bottomPipe3.addEventListener(Event.ENTER_FRAME, function(e:Event):void {
 				moveThePipe(e.currentTarget);
 			});
+
+      score_trigger.x_speed = 0;
+      var min_x:int = int.MAX_VALUE;
+      score_trigger.addEventListener(Event.ENTER_FRAME, function(e:Event):void {
+        if( score_trigger.x + score_trigger.width < 0 ){
+          score_trigger.y = bottomPipe1.y - score_trigger.height;
+        }
+
+        moveThePipe(e.currentTarget);
+      })
 		}
 
 		private function moveThePipe(the_pipe):void {
-			the_pipe.x += the_pipe.x_speed;
+      var pipe_distance:int = 200;
+      if( the_pipe.x + the_pipe.width < 0 ){
+        the_pipe.x = the_pipe.x + 3*pipe_distance;
+      }
 
-			var pipe_distance:int = 200;
-			if( the_pipe.x + the_pipe.width < 0 ){
-				the_pipe.x = the_pipe.x + 3*pipe_distance;
-			}
+			the_pipe.x += the_pipe.x_speed;
 		}
 	}
 
